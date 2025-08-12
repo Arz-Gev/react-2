@@ -75,7 +75,7 @@
 }
 
 .form {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.5rem 0.5rem;
@@ -85,6 +85,10 @@
   margin: 0 auto;
   font-size: 1.25rem;
   background-color: rgba(var(--white), 0.2);
+}
+
+.show {
+  display: flex;
 }
 
 .task-title {
@@ -112,12 +116,17 @@
 }
 
 .option-btn {
+  display: none;
   flex: 1 1 auto;
   height: 2rem;
   background-color: rgba(var(--white), 0.2);
   border: none;
   border-radius: 1rem;
   cursor: pointer;
+}
+
+.show-block {
+  display: block;
 }
 
 .option-btn:active {
