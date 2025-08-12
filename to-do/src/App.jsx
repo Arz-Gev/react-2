@@ -20,6 +20,7 @@ function App() {
   }
 
   function saveTask() {
+    if (formData.title === "") return;
     setTasks((prev) => [...prev, formData]);
     setFormData({ title: "", complete: false });
   }
