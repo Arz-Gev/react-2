@@ -22,28 +22,33 @@ function App() {
   function deleteTask() {
     setShowInput("");
     if (formData.title === "") return;
-    setTasks(tasks.filter((task, index) => index !== formData.id));
+
+    setTasks(tasks.filter((task) => task.id !== formData.id));
+    setFormData({ title: "", complete: false, id: undefined });
   }
 
   function saveTask() {
     setShowInput("");
     if (formData.title === "") return;
     if (formData.id === undefined) {
-      formData.id = tasks.length;
-      setTasks((prev) => [...prev, formData]);
+      const newTask = { ...formData, id: Date.now() };
+      setTasks((prev) => [...prev, newTask]);
       setFormData({ title: "", complete: false, id: undefined });
       return;
     }
-    setTasks(
-      tasks.map((task, index) => (index === formData.id ? formData : task))
-    );
+    setTasks(tasks.map((task) => (task.id === formData.id ? formData : task)));
     setFormData({ title: "", complete: false, id: undefined });
   }
 
   function editTask(id) {
     setShowInput("show");
     setShowBtn("show-block");
-    setFormData(tasks[id]);
+    const taskToEdit = tasks.find((task) => task.id === id);
+    setFormData(taskToEdit);
+  }
+
+  function preventSubmit(e) {
+    e.preventDefault();
   }
 
   const [showInput, setShowInput] = useState("");
@@ -61,7 +66,7 @@ function App() {
         >
           ADD NEW TASK
         </button>
-        <form className={`form ${showInput}`}>
+        <form onSubmit={preventSubmit} className={`form ${showInput}`}>
           <input
             onChange={saveInput}
             className="task-title"
