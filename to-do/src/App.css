@@ -25,7 +25,11 @@
   width: 3rem;
   height: 2rem;
   top: 0;
-  left: 0;
+  left: 1rem;
+  background-color: rgba(var(--color), 0.2);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .sider {
@@ -44,7 +48,7 @@
   height: 4rem;
   border-radius: 1rem;
   border: none;
-  margin: 2rem auto 0 auto;
+  margin: 2.5rem auto 0 auto;
   font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
