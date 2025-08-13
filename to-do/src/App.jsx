@@ -53,9 +53,29 @@ function App() {
 
   const [showInput, setShowInput] = useState("");
   const [showBtn, setShowBtn] = useState("");
+  const [backColor, setBackColor] = useState(false);
+
+  function changeBackColor() {
+    setBackColor((prev) => !prev);
+
+    if (backColor) {
+      document.documentElement.style.setProperty("--color", "255, 255, 255");
+      document.documentElement.style.setProperty("--back", "0, 0, 0");
+    } else {
+      document.documentElement.style.setProperty("--color", "0, 0, 0");
+      document.documentElement.style.setProperty("--back", "255, 255, 255");
+    }
+  }
 
   return (
-    <>
+    <div className={`background`}>
+      <button
+        onClick={() => {
+          changeBackColor();
+        }}
+        className="color-switch"
+        type="button"
+      ></button>
       <div className="sider">
         <button
           onClick={() => {
@@ -113,7 +133,7 @@ function App() {
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

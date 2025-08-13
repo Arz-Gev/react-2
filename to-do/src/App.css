@@ -2,24 +2,36 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: rgba(var(--white), 1);
+  color: rgba(var(--color), 1);
 }
 
 :root {
-  --white: 255, 255, 255;
+  --color: 255, 255, 255;
+  --back: 0, 0, 0;
 }
 
 #root {
-  max-width: 1280px;
   width: 100vw;
-  min-width: 360px;
+  min-width: 320px;
   height: 100vh;
+}
+
+.background {
+  background-color: rgba(var(--back), 1);
+}
+
+.color-switch {
+  position: fixed;
+  width: 3rem;
+  height: 2rem;
+  top: 0;
+  left: 0;
 }
 
 .sider {
   height: 100vh;
   width: min(35rem, 100%);
-  background-color: rgba(var(--white), 0.1);
+  background-color: rgba(var(--color), 0.1);
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -36,11 +48,11 @@
   font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
-  background-color: rgba(var(--white), 0.2);
+  background-color: rgba(var(--color), 0.2);
 }
 
 .add-task:active {
-  background-color: rgba(var(--white), 0.7);
+  background-color: rgba(var(--color), 0.7);
 }
 
 .task {
@@ -55,7 +67,7 @@
   font-weight: 400;
   font-size: 1.25rem;
   text-align: left;
-  background-color: rgba(var(--white), 0.2);
+  background-color: rgba(var(--color), 0.2);
 }
 
 .task-complete {
@@ -65,13 +77,7 @@
 }
 
 .task:active {
-  background-color: rgba(var(--white), 0.7);
-}
-
-.main {
-  width: 10rem;
-  height: 10rem;
-  background-color: blue;
+  background-color: rgba(var(--color), 0.7);
 }
 
 .form {
@@ -84,7 +90,7 @@
   border: none;
   margin: 0 auto;
   font-size: 1.25rem;
-  background-color: rgba(var(--white), 0.2);
+  background-color: rgba(var(--color), 0.2);
 }
 
 .show {
@@ -97,11 +103,11 @@
   border-radius: 1rem;
   border: none;
   padding: 0.5rem;
-  background-color: rgba(var(--white), 0.2);
+  background-color: rgba(var(--color), 0.2);
 }
 
 .task-title::placeholder {
-  color: rgba(var(--white), 1);
+  color: rgba(var(--color), 1);
   text-align: center;
   font-size: 1rem;
 }
@@ -119,7 +125,7 @@
   display: none;
   flex: 1 1 auto;
   height: 2rem;
-  background-color: rgba(var(--white), 0.2);
+  background-color: rgba(var(--color), 0.2);
   border: none;
   border-radius: 1rem;
   cursor: pointer;
@@ -130,11 +136,11 @@
 }
 
 .option-btn:active {
-  background-color: rgba(var(--white), 0.7);
+  background-color: rgba(var(--color), 0.7);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --white: 0, 0, 0;
+    --color: 0, 0, 0;
   }
 }
