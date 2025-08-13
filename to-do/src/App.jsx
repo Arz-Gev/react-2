@@ -49,11 +49,13 @@ function App() {
 
   function preventSubmit(e) {
     e.preventDefault();
+    saveTask();
   }
 
   const [showInput, setShowInput] = useState("");
   const [showBtn, setShowBtn] = useState("");
   const [backColor, setBackColor] = useState(false);
+  const [showOnly, setShowOnly] = useState("all");
 
   function changeBackColor() {
     setBackColor((prev) => !prev);
@@ -86,6 +88,35 @@ function App() {
         >
           ADD NEW TASK
         </button>
+        <div className="filter">
+          <button
+            onClick={() => {
+              setShowOnly("all");
+            }}
+            className="filter-btn"
+            type="button"
+          >
+            ALL
+          </button>
+          <button
+            onClick={() => {
+              setShowOnly("done");
+            }}
+            className="filter-btn"
+            type="button"
+          >
+            DONE
+          </button>
+          <button
+            onClick={() => {
+              setShowOnly("pending");
+            }}
+            className="filter-btn"
+            type="button"
+          >
+            PENDING
+          </button>
+        </div>
         <form onSubmit={preventSubmit} className={`form ${showInput}`}>
           <input
             onChange={saveInput}
@@ -121,17 +152,27 @@ function App() {
             </button>
           </div>
         </form>
-        {tasks.map((task, index) => (
-          <button
-            onClick={() => {
-              editTask(task.id);
-            }}
-            key={index}
-            className={`task ${task.complete ? "task-complete" : ""}`}
-          >
-            {task.title}
-          </button>
-        ))}
+        {tasks
+          .filter((task) => {
+            if (showOnly === "all") {
+              return task;
+            } else if (showOnly === "done") {
+              return task.complete === true;
+            } else if (showOnly === "pending") {
+              return task.complete === false;
+            }
+          })
+          .map((task, index) => (
+            <button
+              onClick={() => {
+                editTask(task.id);
+              }}
+              key={index}
+              className={`task ${task.complete ? "task-complete" : ""}`}
+            >
+              {task.title}
+            </button>
+          ))}
       </div>
     </div>
   );
