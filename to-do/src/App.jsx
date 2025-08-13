@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import { FileSource } from "@google/genai";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -14,6 +13,12 @@ function App() {
   function saveInput(e) {
     setFormData((prev) => ({ ...prev, title: e.target.value }));
   }
+
+  const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    setStatus(formData.complete ? "green-btn" : "");
+  }, [formData.complete]);
 
   function saveStatus() {
     setFormData((prev) => ({ ...prev, complete: !prev.complete }));
@@ -71,14 +76,16 @@ function App() {
 
   return (
     <div className={`background`}>
-      <button
-        onClick={() => {
-          changeBackColor();
-        }}
-        className="color-switch"
-        type="button"
-      ></button>
       <div className="sider">
+        <button
+          onClick={() => {
+            changeBackColor();
+          }}
+          className="color-switch"
+          type="button"
+        >
+          🌗
+        </button>
         <button
           onClick={() => {
             setShowInput("show");
@@ -105,7 +112,7 @@ function App() {
             className="filter-btn"
             type="button"
           >
-            DONE
+            COMPLETE
           </button>
           <button
             onClick={() => {
@@ -145,10 +152,10 @@ function App() {
             </button>
             <button
               onClick={saveStatus}
-              className={`option-btn ${showBtn}`}
+              className={`option-btn ${showBtn} ${status}`}
               type="button"
             >
-              DONE
+              COMPLETE
             </button>
           </div>
         </form>

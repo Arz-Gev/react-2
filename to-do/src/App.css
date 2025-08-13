@@ -8,6 +8,7 @@
 :root {
   --color: 255, 255, 255;
   --back: 0, 0, 0;
+  --green: rgb(2, 196, 2);
 }
 
 #root {
@@ -21,11 +22,10 @@
 }
 
 .color-switch {
-  position: fixed;
-  width: 3rem;
-  height: 2rem;
-  top: 0;
-  left: 1rem;
+  padding: 0.5rem 0.5rem;
+  position: absolute;
+  top: 0.25rem;
+  left: 5%;
   background-color: rgba(var(--color), 0.2);
   border: none;
   border-radius: 0.5rem;
@@ -41,6 +41,7 @@
   justify-content: start;
   gap: 0.75rem;
   margin: 0 auto;
+  position: relative;
 }
 
 .add-task {
@@ -72,11 +73,12 @@
   font-size: 1.25rem;
   text-align: left;
   background-color: rgba(var(--color), 0.2);
+  overflow: hidden;
 }
 
 .task-complete {
-  border-left: solid rgb(2, 196, 2) 0.5rem;
-  color: rgb(2, 196, 2);
+  border-left: solid var(--green) 0.5rem;
+  color: var(--green);
   text-decoration: line-through;
 }
 
@@ -141,6 +143,10 @@
 
 .option-btn:active {
   background-color: rgba(var(--color), 0.7);
+}
+
+.green-btn {
+  background-color: var(--green);
 }
 
 .filter {
